@@ -3,6 +3,7 @@ public abstract class Perceptron implements ActivationFunction {
     private double []weights;
     private double []inputs;
     private double desiredOutput;
+    private double epsilon = 0.1;
 
     public Perceptron(double []i, double d) {
         this.inputs = i;
@@ -24,6 +25,10 @@ public abstract class Perceptron implements ActivationFunction {
 
     public void setDesiredOutputs(double d) {
         this.desiredOutput = d;
+    }
+    
+    public void setEpsilon(double e) {
+        this.epsilon = e;
     }
 
     public double[] getWeights() {
@@ -47,7 +52,7 @@ public abstract class Perceptron implements ActivationFunction {
             /*W(i + 1)[k] = W(i)[k] + (desired_output - network_output) * input[k] * ABS(W(i)[k]) * epsilon
             * epsilon1 = ABS(W(i)[k] * epsilon
             */
-            weights[i] = weights[i] + (desiredOutput - output()) * inputs[i] * /*Math.abs(weight[i]) **/ 0.1;
+            weights[i] = weights[i] + (desiredOutput - output()) * inputs[i] * epsilon;
         }
     }
 }
