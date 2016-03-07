@@ -2,6 +2,10 @@ public class ActivationFunctions {
 
     public static double alpha = 1;
 
+    public static void setAlpha(double a) {
+        alpha = a;
+    }
+
     public static double sigmoid(double S) {
         return 1 / (1 + Math.exp(-alpha * S));
     }
@@ -11,11 +15,11 @@ public class ActivationFunctions {
     }
 
     public static double tanh(double S) {
-        return Math.tanh(-alpha * S);
+        return Math.tanh(alpha * S);
     }
 
     public static double derivativeTanh(double S) {
-        return 4 * alpha / Math.pow(4 / (Math.exp(alpha * S) + Math.exp(-alpha * S)), 2);
+        return alpha * (1 - tanh(S) * tanh(S));
     }
 
     public static double signum(double S) {
